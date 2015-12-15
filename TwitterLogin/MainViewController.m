@@ -9,9 +9,9 @@
 
 #import "MainViewController.h"
 
-NSString *client_id = @"ttYZ2PAEokXs9jNIJsErI2yL9";
-NSString *secret = @"j95uQKMzpPkz3YihyK5hL7nr9SHlKaMbyumQaNN83Ep2Nlvm3h";
-NSString *callback = @"http://codegerms.com/callback";
+NSString *client_id = @"GtJqVCX8VV4vrZ3z2loPCblay";
+NSString *secret = @"2kcQlh6x8ZaX7A6PQ0KCDP8gk91gXvrJIrjNNIDXDcqhbSQshO";
+NSString *callback = @"https://TwitterLoginDemo.com/callback";
 
 @interface MainViewController ()
 
@@ -79,7 +79,7 @@ NSString *callback = @"http://codegerms.com/callback";
     NSString *temp = [NSString stringWithFormat:@"%@",request];
     //  BOOL result = [[temp lowercaseString] hasPrefix:@"http://codegerms.com/callback"];
     // if (result) {
-    NSRange textRange = [[temp lowercaseString] rangeOfString:[@"http://codegerms.com/callback" lowercaseString]];
+    NSRange textRange = [[temp lowercaseString] rangeOfString:[@"https://TwitterLoginDemo.com/callback" lowercaseString]];
     
     if(textRange.location != NSNotFound){
         
