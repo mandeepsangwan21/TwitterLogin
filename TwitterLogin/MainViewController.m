@@ -155,7 +155,7 @@ NSString *callback = @"https://TwitterLoginDemo.com/callback";
 }
 - (IBAction)tweetThis:(id)sender {
     
-    NSURL *finalURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/update_with_media.json"];
+    NSURL *finalURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/update.json"];
                        
                        OAMutableURLRequest *theRequest = [[OAMutableURLRequest alloc] initWithURL:finalURL
                                                                                          consumer:consumer
@@ -183,9 +183,10 @@ NSString *callback = @"https://TwitterLoginDemo.com/callback";
                        [body appendData:[[NSString stringWithFormat:@"%@",@"latest upload"] dataUsingEncoding:NSUTF8StringEncoding]];
                        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
                        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-                       [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"media[]\"; filename=\"notes.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"status\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
                        [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-                       [body appendData:[NSData dataWithData:UIImageJPEGRepresentation([UIImage imageNamed:@"notes.png"], 0.5)]];
+                        [body appendData:[[NSString stringWithFormat:@"%@",@"latest upload"] dataUsingEncoding:NSUTF8StringEncoding]];
+
                        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
                        [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
                        
