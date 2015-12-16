@@ -39,6 +39,10 @@ NSString *callback = @"https://TwitterLoginDemo.com/callback";
                              delegate:self
                     didFinishSelector:@selector(didReceiveRequestToken:data:)
                       didFailSelector:@selector(didFailOAuth:error:)];
+    
+    
+  //  NSURL *req = [NSURL URLWithString:@"https://api.twitter.com/oauth/request_token"];
+//    http://upload.twitter.com/1/statuses/update_with_media.json
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +76,8 @@ NSString *callback = @"https://TwitterLoginDemo.com/callback";
     [authorizeRequest setParameters:[NSArray arrayWithObject:oauthTokenParam]];
     
     [webview loadRequest:authorizeRequest];
+    
+    
 }
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -142,6 +148,60 @@ NSString *callback = @"https://TwitterLoginDemo.com/callback";
                               otherButtonTitles:nil];
     [alertView show];
     
+    
+        // Url for upload pictures
+    
+    
+}
+- (IBAction)tweetThis:(id)sender {
+    
+    NSURL *finalURL = [NSURL URLWithString:@"https://api.twitter.com/1.1/statuses/update_with_media.json"];
+                       
+                       OAMutableURLRequest *theRequest = [[OAMutableURLRequest alloc] initWithURL:finalURL
+                                                                                         consumer:consumer
+                                                                                            token:accessToken
+                                                                                            realm: nil
+                                                                                signatureProvider:nil];
+                       
+                       [theRequest setHTTPMethod:@"POST"];
+                       [theRequest setTimeoutInterval:120];
+                       [theRequest setHTTPShouldHandleCookies:NO];
+                       
+                       // Set headers for client information, for tracking purposes at Twitter.(This is optional)
+//                       [theRequest setValue:@"TestIphone" forHTTPHeaderField:@"X-Twitter-Client"];
+//                       [theRequest setValue:@"1.1" forHTTPHeaderField:@"X-Twitter-Client-Version"];
+//                       [theRequest setValue:@"http://www.TestIphone.com/" forHTTPHeaderField:@"X-Twitter-Client-URL"];
+    
+                       NSString *boundary = @"--Hi all, First Share"; // example taken and implemented.
+                       NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+                       [theRequest setValue:contentType forHTTPHeaderField:@"content-type"];
+                       
+                       NSMutableData *body = [NSMutableData data];
+                       
+                       [body appendData:[[NSString stringWithFormat:@"--%@\r\n\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"status\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"%@",@"latest upload"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"media[]\"; filename=\"notes.png\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[NSData dataWithData:UIImageJPEGRepresentation([UIImage imageNamed:@"notes.png"], 0.5)]];
+                       [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                       [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                       
+                       [theRequest prepare];
+                       
+                       NSString *oAuthHeader = [theRequest valueForHTTPHeaderField:@"Authorization"];
+                       [theRequest setHTTPBody:body];
+                       
+                       NSHTTPURLResponse *response = nil;
+                       NSError *error = nil;
+                       
+                       NSData *responseData = [NSURLConnection sendSynchronousRequest:theRequest
+                                                                    returningResponse:&response                            
+                                                                                error:&error];
+                       NSString *responseString = [[NSString alloc] initWithData:responseData                                
+                                                                        encoding:NSUTF8StringEncoding];
 }
 
 - (void)didFailOAuth:(OAServiceTicket*)ticket error:(NSError*)error {

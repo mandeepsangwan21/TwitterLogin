@@ -42,6 +42,8 @@
 		EBD3C1F21C1E869B0041F706 /* TwitterLoginTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD3C1F11C1E869B0041F706 /* TwitterLoginTests.m */; };
 		EBD3C1FD1C1E869B0041F706 /* TwitterLoginUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD3C1FC1C1E869B0041F706 /* TwitterLoginUITests.m */; };
 		EBD3C20C1C1EA3B70041F706 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD3C20B1C1EA3B70041F706 /* MainViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EBE1361D1C201D3600E1AD39 /* mike.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBE1361C1C201D3600E1AD39 /* mike.jpg */; settings = {ASSET_TAGS = (); }; };
+		EBE1361F1C2039F200E1AD39 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE1361E1C2039F200E1AD39 /* notes.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		EBD3C1FE1C1E869B0041F706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBD3C20A1C1EA3B70041F706 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		EBD3C20B1C1EA3B70041F706 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		EBE1361C1C201D3600E1AD39 /* mike.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mike.jpg; sourceTree = "<group>"; };
+		EBE1361E1C2039F200E1AD39 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +267,8 @@
 		EBD3C1D61C1E869A0041F706 /* TwitterLogin */ = {
 			isa = PBXGroup;
 			children = (
+				EBE1361E1C2039F200E1AD39 /* notes.png */,
+				EBE1361C1C201D3600E1AD39 /* mike.jpg */,
 				EB4CB6ED1C1ED6A2008442B8 /* oauthconsumer-master */,
 				EB4CB6DC1C1ED4BD008442B8 /* JSON */,
 				EBD3C1DA1C1E869A0041F706 /* AppDelegate.h */,
@@ -413,10 +419,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE1361D1C201D3600E1AD39 /* mike.jpg in Resources */,
 				EB4CB72B1C1ED6A2008442B8 /* README in Resources */,
 				EBD3C1E71C1E869B0041F706 /* LaunchScreen.storyboard in Resources */,
 				EBD3C1E41C1E869B0041F706 /* Assets.xcassets in Resources */,
 				EBD3C1E21C1E869B0041F706 /* Main.storyboard in Resources */,
+				EBE1361F1C2039F200E1AD39 /* notes.png in Resources */,
 				EB4CB7281C1ED6A2008442B8 /* OATestServer.rb in Resources */,
 				EB4CB6DB1C1ED325008442B8 /* MainViewController.xib in Resources */,
 			);
